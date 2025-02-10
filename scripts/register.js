@@ -19,7 +19,7 @@ let myWidget = cloudinary.createUploadWidget({
   )
   
   document.getElementById("upload_widget").addEventListener("click", (event)=>{
-    event.stopPropagation()
+    event.preventDefault()
     myWidget.open();
     }, false);
 
