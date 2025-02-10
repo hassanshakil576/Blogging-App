@@ -4,6 +4,7 @@ import { collection, getDocs, query, where } from "https://www.gstatic.com/fireb
 
 
 const loginBtn = document.querySelector('#login-btn')
+const logoutBtn = document.querySelector(".logout-btn")
 const loginUser = document.querySelector('#login-user')
 const userName = document.querySelector('#user-profile-name')
 const userProfileImage = document.querySelector('#user-profile-img')
@@ -20,14 +21,22 @@ onAuthStateChanged(auth, async (user) => {
         loginUser.classList.remove('d-none') //This ensures that after login, the user's profile information (name & picture) is visible instead of the login button
 
         userName.innerHTML = users.fullname
-
         userProfileImage.src = users.profileImage
 
     } else {
-        window.location = "login.html"
+        window.location = "./login.html"
     }
 });
 
+
+logoutBtn.addEventListener("click" , ()=>{
+    signOut(auth).then(() => {
+        window.location = "./login.html"
+      }).catch((error) => {
+        console.log(error);
+    });
+
+})
 
 async function getDataFromFirestore() {
     let user = null

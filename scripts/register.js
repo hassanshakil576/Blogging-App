@@ -41,7 +41,7 @@ form.addEventListener("submit" , (event)=>{
       const docRef = await addDoc(collection(db, "users"), {
         fullname: fullname.value,
         email: email.value,
-        // password: password.value, //we donot save password in database
+        // password: password.value, (we donot save password in database)
         profileImage: uploadPicUrl,
         uid: user.uid
       });
