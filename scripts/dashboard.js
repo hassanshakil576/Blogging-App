@@ -4,11 +4,12 @@ import {auth , db} from "./firebaseconfig.js"
 
 const form = document.querySelector("#form");
 const username = document.querySelector("#userName")
-const displayname = document.querySelector("#displayName")
-const imagePreview = document.querySelector("#imagePreview")
-const profileImage = document.querySelector("#profileImage")
-const addBtn = document.querySelector("#add-btn")
+// const displayname = document.querySelector("#displayName")
+// const imagePreview = document.querySelector("#imagePreview")
+// const profileImage = document.querySelector("#profileImage")
+// const addBtn = document.querySelector("#add-btn")
 const div = document.querySelector(".parent")
+const backBtn = document.querySelector("#backToHomePageBtn")
 
 
 let uploadPicUrl = ""
@@ -121,4 +122,9 @@ form.addEventListener("submit" ,async (event)=>{
         console.error("Error adding document: ", e);
       }
       username.value = ""
+})
+
+
+backBtn.addEventListener("click" , ()=>{
+  window.location = "./index.html"
 })
