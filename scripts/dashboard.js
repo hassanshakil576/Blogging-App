@@ -4,10 +4,7 @@ import {auth , db} from "./firebaseconfig.js"
 
 const form = document.querySelector("#form");
 const username = document.querySelector("#userName")
-// const displayname = document.querySelector("#displayName")
-// const imagePreview = document.querySelector("#imagePreview")
-// const profileImage = document.querySelector("#profileImage")
-// const addBtn = document.querySelector("#add-btn")
+const description = document.querySelector("#description")
 const div = document.querySelector(".parent")
 const backBtn = document.querySelector("#backToHomePageBtn")
 
@@ -29,17 +26,16 @@ let myWidget = cloudinary.createUploadWidget({
     }, false);
 
 
-let dashboardData = [];
-async function getDataFromFS(){
-    const q = query(collection(db, "blogs"), orderBy("date", "desc") ,where("uid", "==", auth.currentUser.uid));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-    dashboardData.push({...doc.data() , id: doc.id})
-    
-})
-renderData(dashboardData)
-console.log(dashboardData);
-}
+    let dashboardData = [];
+    async function getDataFromFS(){
+        const q = query(collection(db, "blogs"), orderBy("date", "desc") ,where("uid", "==", auth.currentUser.uid));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+        dashboardData.push({...doc.data() , id: doc.id})
+    })
+    renderData(dashboardData)
+    console.log(dashboardData);
+    }
 
 
 function renderData(dashboardData){
@@ -47,42 +43,11 @@ function renderData(dashboardData){
     dashboardData.map((item)=>{
         div.innerHTML += 
         `<div class="card text-center p-3 mt-3">
-            <img id="imagePreview" src="${item.profileImage}" class="profile-img mx-auto" alt="Profile"
-            <h5 id="displayName" class="mt-2">${item.title}</h5>
-            <div>
-            <button type="button" id ="editbtn" class="btn btn-success w-25 mx-auto mt-4">Edit</button>
-            <button type="button" id ="deletebtn" class="btn btn-danger  w-25 mx-auto mt-4">Delete</button>
-            </div>
+            <img src="${item.profileImage}" class="profile-img mx-auto" alt="Profile">
+            <h2 class ="mt-2 title fw-bold mx-auto">${item.title}</h2><br>
+            <p class = "fw-bold">Description: ${item.description}</p>
         </div> `
    })
-   const deleteBtn = document.querySelectorAll("#deletebtn")
-   const editBtn = document.querySelectorAll("#editbtn")
-
-   deleteBtn.forEach((item , index) => {
-    item.addEventListener('click', async (event) => {
-      console.log("btn clicked");
-      // console.log(allTodo[index]);
-      await deleteDoc(doc(db, "blogs", dashboardData[index].id));
-      console.log('blog deleted');
-      dashboardData.splice(index, 1)
-      renderData(dashboardData)
-    })
-  })
-  
-  editBtn.forEach((item, index) => {
-    item.addEventListener('click', async (event) => {
-      console.log("edit clicked");
-      console.log(dashboardData[index]);
-      const updatedTitle = prompt("Enter updated title")
-      const todoRef = doc(db, "blogs", dashboardData[index].id);
-      await updateDoc(todoRef, {
-        title: updatedTitle,
-      });
-      console.log('todo updated successfully');
-      dashboardData[index].title = updatedTitle
-      renderData(dashboardData)
-    })
-  })
 }
 
 onAuthStateChanged(auth, (user) => {
@@ -96,15 +61,16 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-
 form.addEventListener("submit" ,async (event)=>{
   event.preventDefault()
   console.log(username.value);
-//    displayname.innerHTML = username.value
+  console.log(description.value);
+  
   try {
         const docRef = await addDoc(collection(db, "blogs"), {
           title: username.value,
           profileImage: uploadPicUrl,
+          description: description.value,
           date: Timestamp.fromDate(new Date()),
           uid: auth.currentUser.uid
         });
@@ -112,6 +78,7 @@ form.addEventListener("submit" ,async (event)=>{
         dashboardData.unshift({
           title: username.value,
           profileImage: uploadPicUrl,
+          description: description.value,
           date: Timestamp.fromDate(new Date()),
           uid: auth.currentUser.uid,
           id: docRef.id, //purpose of saving id is to delete and edit data through it.
@@ -122,6 +89,7 @@ form.addEventListener("submit" ,async (event)=>{
         console.error("Error adding document: ", e);
       }
       username.value = ""
+      description.value = ""
 })
 
 

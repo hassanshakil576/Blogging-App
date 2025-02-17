@@ -1,9 +1,134 @@
-.card{
-    box-shadow: 100px 10px 10px black;
+/* navbar styling */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #dc3545;
+    color: white;
+    padding: 3px 5px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
+.fa-solid {
+    font-size: 18px;
+}
+.logout-btn:hover {
+    background-color: #a71d2a; 
+    transform: scale(1.05);
+}
+.logout-btn:active {
+    transform: scale(0.95);
+}
+.navbar {
+    background-color: #007bff;
+    padding: 12px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(0, 0, 0) ;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.navbar-brand img {
+    width: 30px;
+    height: auto;
+}
+.navbar-nav .nav-item {
+    position: relative;
+    margin: 0 10px;
+}
+.navbar-nav .nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(175, 175, 175) !important;
+    position: relative;
+    padding: 8px 12px;
+    transition: color 0.2s ease-in-out;
+}
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
+}
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+.navbar-nav .nav-link:hover {
+    color: #fc0 !important; 
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffcc00 !important;
+    font-weight: bold;
+}
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+#login-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+#user-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+/* navbar styling */
+
+/* main content  */
 .navbar-brand{
     font-family: sans-serif;
 }
+.profile-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+}
+.parent{
+    width: 40%;
+}
+.title{
+    background-color: #02bebe;
+    width: 50%;
+}
+
+/* main content  */
+
+/* footer */
+.section{
+    background-color: rgb(53, 53, 53);
+    color: #ffffff;
+}
+/* footer */
 
 
+
+/* responsive design  */
+@media(max-width: 556px){
+    .parent{
+        width: 95%;
+    }
+}
+/* responsive design  */
 

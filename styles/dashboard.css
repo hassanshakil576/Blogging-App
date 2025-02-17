@@ -1,10 +1,21 @@
 .profile-img {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid #007bff;
 }
 .parent{
     width: 40%;
+}
+.title{
+    background-color: #02bebe;
+    width: 50%;
+}
+
+
+@media(max-width: 556px){
+    .parent{
+        width: 80%;
+    }
 }

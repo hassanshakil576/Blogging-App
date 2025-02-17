@@ -21,17 +21,20 @@
                     <!-- Input Fields -->
                     <form id="form">
                         <div class="mb-3">
-                            <label for="userName" class="form-label">Enter Description Or Name:</label>
-                            <input type="text" id="userName" class="form-control" placeholder="Name or description">
+                            <label for="userName" class="form-label">Name:</label>
+                            <input type="text" id="userName" class="form-control" placeholder="Enter your name">
                         </div>
-    
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">Description:</label>
+                            <textarea class="form-control" rows="4" placeholder="Enter your text here..." id="description"></textarea>
+                        </div>
                         <div class="mb-3 default" id="upload_widget">
-                            <label for="uploadImage" class="form-label">Password</label>
-                            <input type="file" class="form-control" id="uploadImage" placeholder="Upload your Image">
+                            <label for="uploadImage" class="form-label">Upload Image</label>
+                            <button type="submit" class="btn btn-success w-100" id="uploadImage">Upload your image</button>
                         </div>
                         
                         <div class="mb-3 ">
-                            <button type="submit" class="btn bg-primary text-bg-primary border-0 rounded p-2 w-100" id="add-btn">Add</button>
+                            <button type="submit" class="btn btn-primary w-100" id="add-btn">Add Blog</button>
                         </div>
                     </form>
                 </div>
@@ -40,7 +43,7 @@
     </div>
     <!-- Profile Card-->
     <h1 class="text-center mt-4">My blogs</h1>
-    <div class="parent mx-auto fw-bold">
+    <div class="parent mx-auto mb-4">
                             
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

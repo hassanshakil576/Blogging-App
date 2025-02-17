@@ -9,6 +9,7 @@ const loginUser = document.querySelector('#login-user')
 const userName = document.querySelector('#user-profile-name')
 const userProfileImage = document.querySelector('#user-profile-img')
 const div = document.querySelector(".parent")
+// const readMoreBtn = document.querySelector("#readMore-btn");
 
 
 onAuthStateChanged(auth, async (user) => {
@@ -67,30 +68,17 @@ async function getDataFromFSForBlogs() {
 getDataFromFSForBlogs()
 
 
-
-// function renderData(allBlogData){
-//     div.innerHTML = ""
-//       allBlogData.map((item)=>{
-//           div.innerHTML += 
-//           `<div class=" text-center p-3 mt-5">
-//               <img width = "200px" id="imagePreview" src="${item.profileImage}" class="profile-img mx-auto" alt="Profile"
-//               <h5 id="displayName" class="mt-2">${item.title}</h5>
-//             </div> `
-//      })
-// }
-
-
 function renderData(allBlogData) {
     div.innerHTML = ""
     allBlogData.map((item) => {
         div.innerHTML +=
-            `<div class ="card-style">
-            <div class="card shadow-lg" style="width: 18rem;">
-            <img width = "200px" src="${item.profileImage}" class="card-img-top" >
-            <div class="card-body">
-            <p class="card-text">${item.title}</p>
+        `<div class="card text-center p-3 mt-3">
+            <img src="${item.profileImage}" class="profile-img mx-auto" alt="Profile">
+            <h2 class ="mt-2 title mx-auto">${item.title}</h2><br>
+            <div class = "d-flex justify-content-center align-items-center gap-3">
+              <p class = "fw-bold mt-4">Description: ${item.description}</p>
             </div>
-            </div>
-            </div> `
+        </div> `
     })
 }
+
